@@ -1,0 +1,30 @@
+<?php
+
+include'script/pdocrud.php';
+
+
+echo '<div class="container">';
+echo '<div class="row">';
+$pdocrud = new PDOCrud(false, "pure", "pure");
+$pdocrud->fieldNotMandatory("titulo");
+$pdocrud->fieldNotMandatory("contrato");
+$pdocrud->fieldNotMandatory("obra");
+$pdocrud->fieldNotMandatory("descripcion");
+$pdocrud->fieldNotMandatory("monto");
+$pdocrud->fieldNotMandatory("fecha_inicio");
+$pdocrud->fieldNotMandatory("fecha_terminacion");
+$pdocrud->fieldNotMandatory("cliente");
+$pdocrud->fieldNotMandatory("responsable");
+$pdocrud->fieldNotMandatory("plazo_ejecucion");
+$pdocrud->fieldNotMandatory("imagen");
+$pdocrud->fieldNotMandatory("video");
+$pdocrud->addPlugin("summernote");//to add plugin          
+$pdocrud->fieldCssClass("descripcion", array("summernote"));
+$pdocrud->fieldTypes("imagen", "FILE_NEW");//change type to image
+$pdocrud->setSettings("actionBtnPosition", "left");
+$pdocrud->setSettings("tableCellEdit", true);
+echo $pdocrud->dbTable("proyectos")->render(); 
+echo $pdocrud->loadPluginJsCode("summernote",".summernote");
+echo '</div>';
+echo '</div>';
+?>
